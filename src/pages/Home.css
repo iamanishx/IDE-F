@@ -1,0 +1,445 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.home-container {
+  padding: 20px;
+  background: #000000;
+  color: white;
+  height: 100vh;
+  width: 100%;
+
+   
+}
+
+.home-header {
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8%;
+  background-color: #000000;
+}
+
+.mb {
+  margin-right: 13%;
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-search-bar {
+  margin-left: 10%;
+  width: 60%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  background: #1e1e1e;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+.home-search-bar {
+  border: 1px;
+  outline: none;  
+  border-color: #eff1f2;  
+  box-shadow: 0 0 2px #eaeeef; 
+}
+
+.home-search-bar:hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-search-bar:hover::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 0;
+  animation: ripple 1s ease-out forwards;
+}
+
+@keyframes ripple {
+  to {
+    width: 300%;
+    height: 300%;
+    opacity: 0;
+  }
+}
+
+.xd {
+  margin-left: 3%;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.xd:hover {
+  transform: rotate(360deg);
+}
+
+.home-search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  margin-left: 1%;
+  width: 100%;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.home-add-btn {
+  background: white;
+  color: black;
+  font-family: 'Caveat', cursive, 'Comic Sans MS', sans-serif;  
+  font-size: 1.2rem;
+  padding: 10px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  border: 2px solid black;
+  width: fit-content;
+  height: 30px;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-add-btn:hover {
+  background: black;
+  color: white;
+  transform: rotate(-2deg) scale(1.1);
+  border: 2px solid white;
+  text-shadow: 0px 0px 5px white, 0px 0px 10px white;
+  letter-spacing: 2px;
+}
+
+.mb select {
+  background: #1a1a1a;  
+  color: white;  
+  border: 1px solid #333; 
+  border-radius: 8px;  
+  padding: 8px 12px; 
+  font-size: 1rem;  
+  cursor: pointer; 
+  transition: all 0.3s ease-in-out; 
+  appearance: none;  
+  position: relative;
+  width: 150px;  
+}
+
+.mb select:hover {
+  border-color: #feffff;  
+  background: #222;  
+}
+
+.mb select:focus {
+  outline: none;  
+  border-color: #eff1f2;  
+  box-shadow: 0 0 5px #eaeeef;  
+}
+
+ .mb select::after {
+  content: "▼";  
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+ .mb select option {
+  background: #1a1a1a;  
+  color: white;  
+  padding: 8px;
+  border: none;
+}
+
+ .mb select option:disabled {
+  display: none;  
+}
+
+ .mb select::-ms-expand {
+  display: none;  
+}
+
+
+
+.home-project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.home-project-card {
+  background: #1e1e1e;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.home-project-card:hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-project-card:hover::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 0;
+  animation: ripple 1s ease-out forwards;
+}
+
+.project-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.project-link {
+  color: #61dafb;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  color: white;
+  text-shadow: 0px 0px 5px #61dafb, 0px 0px 10px #61dafb;
+}
+
+.project-description {
+  color: #ccc;
+}
+
+.home-delete-btn {
+  background: #ff4d4d;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.home-delete-btn:hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-delete-btn:hover::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 0;
+  animation: ripple 1s ease-out forwards;
+}
+
+
+.home-project-card {
+  background: #1e1e1e;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.project-link {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+.project-description {
+  color: #ccc;
+}
+
+.home-delete-btn {
+  background: #000000;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.home-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal container */
+.home-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Dim background overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal box */
+.modal-content {
+  background: #1e1e1e; /* Dark background */
+  color: white; /* White text */
+  padding: 25px;
+  border-radius: 16px;
+  width: 90%; /* Adjust for smaller screens */
+  max-width: 500px; /* Max width for larger screens */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Add depth */
+  position: relative;
+  animation: slide-in 0.4s ease; /* Smooth entrance */
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Input fields */
+.modal-input,
+.modal-textarea,
+.modal-select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #121212;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+/* Input hover and focus effects */
+.modal-input:hover,
+.modal-textarea:hover,
+.modal-select:hover {
+  border-color: #f9f9f9;
+}
+
+.modal-input:focus,
+.modal-textarea:focus,
+.modal-select:focus {
+  background: #1e1e1e;
+  border-color: #f9f9f9;
+  box-shadow: 0 0 5px #f9f9f9;
+}
+
+/* Textarea specific styles */
+.modal-textarea {
+  resize: none; /* Disable resizing */
+  height: 80px; /* Set a consistent height */
+}
+
+/* Visibility dropdown */
+.modal-select {
+  cursor: pointer;
+}
+
+/* Action buttons container */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px; /* Add some spacing between buttons */
+}
+
+/* General Button Style */
+.modal-save-btn,
+.modal-cancel-btn {
+  padding: 10px 15px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  flex: 1; /* Equal width for both buttons */
+  position: relative;
+  overflow: hidden; /* Control hover effects */
+}
+
+/* Save Button - Starts White */
+.modal-save-btn {
+  background: white;
+  color: black;
+  border: 2px solid black;
+}
+
+/* Save Button Hover - Turns Black */
+.modal-save-btn:hover {
+  background: black;
+  color: white;
+  border: 2px solid white;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4), 0 0 10px rgba(255, 255, 255, 0.2); /* Soft glow */
+}
+
+/* Cancel Button - Starts Black */
+.modal-cancel-btn {
+  background: black;
+  color: white;
+  border: 2px solid white;
+}
+
+/* Cancel Button Hover - Turns White */
+.modal-cancel-btn:hover {
+  background: white;
+  color: black;
+  border: 2px solid black;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 0, 0, 0.2); /* Soft glow */
+}
