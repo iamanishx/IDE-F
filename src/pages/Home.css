@@ -312,31 +312,29 @@
   align-items: center;
 }
 
-/* Modal container */
-.home-modal {
+ .home-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8); /* Dim background overlay */
+  background: rgba(0, 0, 0, 0.8); 
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
-/* Modal box */
-.modal-content {
-  background: #1e1e1e; /* Dark background */
-  color: white; /* White text */
+ .modal-content {
+  background: #1e1e1e;  
+  color: white; 
   padding: 25px;
   border-radius: 16px;
-  width: 90%; /* Adjust for smaller screens */
-  max-width: 500px; /* Max width for larger screens */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Add depth */
+  width: 90%; 
+  max-width: 500px;  
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);  
   position: relative;
-  animation: slide-in 0.4s ease; /* Smooth entrance */
+  animation: slide-in 0.4s ease;  
 }
 
 @keyframes slide-in {
@@ -350,7 +348,7 @@
   }
 }
 
-/* Input fields */
+ 
 .modal-input,
 .modal-textarea,
 .modal-select {
@@ -366,8 +364,7 @@
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 
-/* Input hover and focus effects */
-.modal-input:hover,
+ .modal-input:hover,
 .modal-textarea:hover,
 .modal-select:hover {
   border-color: #f9f9f9;
@@ -381,26 +378,22 @@
   box-shadow: 0 0 5px #f9f9f9;
 }
 
-/* Textarea specific styles */
-.modal-textarea {
-  resize: none; /* Disable resizing */
-  height: 80px; /* Set a consistent height */
+ .modal-textarea {
+  resize: none; 
+  height: 80px; 
 }
 
-/* Visibility dropdown */
-.modal-select {
+ .modal-select {
   cursor: pointer;
 }
 
-/* Action buttons container */
-.modal-actions {
+ .modal-actions {
   display: flex;
   justify-content: space-between;
-  gap: 15px; /* Add some spacing between buttons */
+  gap: 15px;  
 }
 
-/* General Button Style */
-.modal-save-btn,
+ .modal-save-btn,
 .modal-cancel-btn {
   padding: 10px 15px;
   border: 2px solid transparent;
@@ -421,23 +414,20 @@
   border: 2px solid black;
 }
 
-/* Save Button Hover - Turns Black */
-.modal-save-btn:hover {
+ .modal-save-btn:hover {
   background: black;
   color: white;
   border: 2px solid white;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4), 0 0 10px rgba(255, 255, 255, 0.2); /* Soft glow */
 }
 
-/* Cancel Button - Starts Black */
-.modal-cancel-btn {
+ .modal-cancel-btn {
   background: black;
   color: white;
   border: 2px solid white;
 }
 
-/* Cancel Button Hover - Turns White */
-.modal-cancel-btn:hover {
+ .modal-cancel-btn:hover {
   background: white;
   color: black;
   border: 2px solid black;
