@@ -20,18 +20,18 @@ const UserIdPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError(""); 
-
+  
     if (!userId.trim()) {
       setError("User ID cannot be empty.");
       return;
     }
-
+  
     const token = localStorage.getItem("token");
     if (!token) {
       setError("You are not authorized. Please log in again.");
       return;
     }
-
+  
     try {
       const response = await axios.post(
         "http://localhost:3000/userid",
@@ -42,9 +42,15 @@ const UserIdPage = () => {
           },
         }
       );
-
+  
       console.log("User ID set successfully:", response.data);
-
+  
+      // Update the token in localStorage with the new one from the response
+      const newToken = response.data.token;
+      if (newToken) {
+        localStorage.setItem("token", newToken);
+      }
+  
       // Redirect to the homepage after successful submission
       navigate("/home");
     } catch (error) {
@@ -52,6 +58,7 @@ const UserIdPage = () => {
       setError(error.response?.data?.message || "An error occurred. Please try again.");
     }
   };
+  
 
   return (
     <div className="animate-fadeIn flex flex-col items-center justify-center min-h-screen bg-black relative">
