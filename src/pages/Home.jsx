@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import api from "../api/axiosConfig";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import "./Home.css";
-
-
 
 const Home = () => {
   const [projects, setProjects] = useState([]);
@@ -18,13 +15,14 @@ const Home = () => {
     language: "",
     visibility: "public",
   });
- // Fetch projects from backend
-useEffect(() => {
-    
+
+  // Fetch projects from backend
+  useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await api.get("/projects"); // Use the Axios instance
-        setProjects(response.data);
+        const response = await api.get("/projects");
+        console.log("API Response:", response.data);
+        setProjects(response.data.projects || []); // Handle nested projects key
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
@@ -34,11 +32,10 @@ useEffect(() => {
 
   // Add a new project
   const handleAddProject = async () => {
-
     try {
       const response = await api.post("/projects", newProject);
       setProjects([...projects, response.data]);
-      setNewProject({ name: "", url: "", description: "" });
+      setNewProject({ name: "", url: "", description: "", language: "", visibility: "public" });
       setShowModal(false);
     } catch (error) {
       console.error("Error adding project:", error);
@@ -48,7 +45,7 @@ useEffect(() => {
   // Delete a project
   const handleDeleteProject = async (id) => {
     try {
-      await api.delete(`/projects/${id}`); // Use the Axios instance
+      await api.delete(`/projects/${id}`);
       setProjects(projects.filter((project) => project.id !== id));
     } catch (error) {
       console.error("Error deleting project:", error);
@@ -58,10 +55,9 @@ useEffect(() => {
   // Search and sort projects
   const filteredProjects = projects
     .filter((project) =>
-      project.name.toLowerCase().includes(searchQuery.toLowerCase())
+      (project.name || "").toLowerCase().includes(searchQuery.toLowerCase())
     )
     .sort((a, b) => {
-
       if (sortOption === "name") return a.name.localeCompare(b.name);
       if (sortOption === "date") return new Date(b.updatedAt) - new Date(a.updatedAt);
       return 0;

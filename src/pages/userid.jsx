@@ -34,7 +34,7 @@ const UserIdPage = () => {
   
     try {
       const response = await axios.post(
-        "http://localhost:3000/userid",
+        "http://localhost:3000/auth/userid",
         { userId },
         {
           headers: {
