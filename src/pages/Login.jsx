@@ -1,16 +1,41 @@
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearToken, setToken } from "../redux/authSlice";
 import { motion } from "framer-motion";
 import "./Login.css";  
 
 const Login = () => {
-  const handleGoogleAuth = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // Clear token on login page visit
+    dispatch(clearToken());
+    localStorage.removeItem("token");
+
+  }, [dispatch]);
+
+  
+  // useEffect(() => {
+  //   // Retrieve the token from the URL and store it in localStorage
+  //   const urlToken = new URLSearchParams(window.location.search).get("token");
+  //   if (urlToken) {
+  //     dispatch(setToken(urlToken));
+  //     localStorage.setItem("token", urlToken);
+      
+  //   }
+  // }, [dispatch]);
+  
+const handleGoogleAuth = () => {
     window.location.href = "http://localhost:3000/auth/google";
   };
 
   const handleGitHubAuth = () => {
     window.location.href = "http://localhost:3000/auth/github";
   };
-//
+
+   
+
   return (
     <motion.div className="login-page">
 

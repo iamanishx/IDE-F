@@ -1,40 +1,45 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken } from "../redux/authSlice";
 import axios from "axios";
 import "./Userid.css";  
 
 
-const UserIdPage = () => {
+const UserIdPage = () => {  
   const [userId, setUserId] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();  
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     // Retrieve the token from the URL and store it in localStorage
     const urlToken = new URLSearchParams(window.location.search).get("token");
     if (urlToken) {
+      dispatch(setToken(urlToken));
       localStorage.setItem("token", urlToken);
+      
     }
-  }, []);
+  }, [dispatch]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError(""); 
-
+  
     if (!userId.trim()) {
       setError("User ID cannot be empty.");
       return;
     }
-
-    const token = localStorage.getItem("token");
+  
     if (!token) {
       setError("You are not authorized. Please log in again.");
       return;
     }
-
+  
     try {
       const response = await axios.post(
-        "http://localhost:3000/userid",
+        "http://localhost:3000/auth/userid",
         { userId },
         {
           headers: {
@@ -42,9 +47,15 @@ const UserIdPage = () => {
           },
         }
       );
-
+  
       console.log("User ID set successfully:", response.data);
-
+  
+      // Update the token in localStorage with the new one from the response
+      const newToken = response.data.token;
+      if (newToken) {
+        dispatch(setToken(newToken));
+      }
+  
       // Redirect to the homepage after successful submission
       navigate("/home");
     } catch (error) {
@@ -52,6 +63,7 @@ const UserIdPage = () => {
       setError(error.response?.data?.message || "An error occurred. Please try again.");
     }
   };
+  
 
   return (
     <div className="animate-fadeIn flex flex-col items-center justify-center min-h-screen bg-black relative">
