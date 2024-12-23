@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken } from "../redux/authSlice";
 import axios from "axios";
 import "./Userid.css";  
 
 
-const UserIdPage = () => {
+const UserIdPage = () => {  
   const [userId, setUserId] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();  
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     // Retrieve the token from the URL and store it in localStorage
     const urlToken = new URLSearchParams(window.location.search).get("token");
     if (urlToken) {
+      dispatch(setToken(urlToken));
       localStorage.setItem("token", urlToken);
+      
     }
-  }, []);
+  }, [dispatch]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,7 +32,6 @@ const UserIdPage = () => {
       return;
     }
   
-    const token = localStorage.getItem("token");
     if (!token) {
       setError("You are not authorized. Please log in again.");
       return;
@@ -48,7 +53,7 @@ const UserIdPage = () => {
       // Update the token in localStorage with the new one from the response
       const newToken = response.data.token;
       if (newToken) {
-        localStorage.setItem("token", newToken);
+        dispatch(setToken(newToken));
       }
   
       // Redirect to the homepage after successful submission

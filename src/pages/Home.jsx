@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import api from "../api/axiosConfig";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setToken } from "../redux/authSlice";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import "./Home.css";
 
@@ -16,19 +19,43 @@ const Home = () => {
     visibility: "public",
   });
 
-  // Fetch projects from backend
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.auth.token);
+
+  // Fetch token from URL and store it
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await api.get("/projects");
-        console.log("API Response:", response.data);
-        setProjects(response.data.projects || []); // Handle nested projects key
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-      }
-    };
-    fetchProjects();
-  }, []);
+    const urlToken = new URLSearchParams(window.location.search).get("token");
+    const storedToken = localStorage.getItem("token");
+
+    if (urlToken) {
+      dispatch(setToken(urlToken));
+      localStorage.setItem("token", urlToken);
+    } else if (!token && storedToken) {
+      // Set the token from local storage if it exists and Redux is empty
+      dispatch(setToken(storedToken));
+    } else if (!token && !storedToken) {
+      navigate("/login");
+    }
+  }, [dispatch, navigate, token]);
+
+
+
+  //fetch projects
+useEffect(() => {
+  const fetchProjects = async () => {
+    try {
+      const response = await api.get("/projects");
+      console.log("API Response:", response.data); // Log the entire response
+      setProjects(response.data.projects || []);  // Make sure to safely handle nested keys
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+      setProjects([]); // Fallback to an empty array if there's an error
+    }
+  };
+  fetchProjects();
+}, []);
+
 
   // Add a new project
   const handleAddProject = async () => {
