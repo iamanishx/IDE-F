@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { setToken } from "../redux/authSlice";
 import { FaPlus, FaSearch } from "react-icons/fa";
 import "./Home.css";
+import {Navbar} from "../components/Navbar";
 
 const Home = () => {
   const [projects, setProjects] = useState([]);
@@ -91,7 +92,9 @@ useEffect(() => {
     });
 
   return (
-    <div className="home-container">
+    <>
+    <Navbar />
+   <div className="home-container">
       <header className="home-header">
         <div className="home-search-bar">
           <FaSearch className="xd" />
@@ -222,6 +225,7 @@ useEffect(() => {
       )}
 
     </div>
+    </>
   );
 };
 
