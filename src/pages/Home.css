@@ -202,34 +202,24 @@
 }
 
 .home-project-card {
-  background: #1e1e1e;
+  background-color: #000000;
   padding: 10px;
   border-radius: 8px;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-   min-height: 150px;
+  border: 1px solid rgb(77, 72, 72);
+  min-height: 150px;
   box-sizing: border-box;
+  transition: border-color 0.3s ease;
+
 
 }
 
 .home-project-card:hover {
-  position: relative;
-  overflow: hidden;
+  border-color: #676363;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .home-project-card:hover::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  z-index: 0;
-  animation: ripple 1s ease-out forwards;
+ 
 }
 
 .project-name {
@@ -238,31 +228,13 @@
   color: white;
 }
 
-.project-link {
-  color: #61dafb;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.project-link:hover {
-  color: white;
-  text-shadow: 0px 0px 5px #61dafb, 0px 0px 10px #61dafb;
-}
-
+ 
+ 
 .project-description {
   color: #ccc;
 }
 
-.home-delete-btn {
-  background: #ff4d4d;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
+ 
 .home-delete-btn:hover {
   position: relative;
   overflow: hidden;
@@ -284,7 +256,7 @@
 
 
 .home-project-card {
-  background: #1e1e1e;
+  background: #090808;
   padding: 10px;
   border-radius: 8px;
   display: flex;
@@ -307,7 +279,7 @@
 }
 
 .home-delete-btn {
-  background: #000000;
+  background: #2b2a2a;
   color: white;
   padding: 5px 10px;
   border-radius: 4px;
