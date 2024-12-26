@@ -31,7 +31,21 @@ body {
     align-items: center;
     gap: 20px;
   }
-  
+  .navbar button.nav-link {
+    background-color: #111;
+    color: white;
+    border: 1px solid #333;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: normal;
+    border-radius: 8%;
+    cursor: pointer;
+    height: 33px;
+   }
+  .navbar button:hover {
+    background-color: #333;
+    
+  }
   .nav-link {
     cursor: pointer;
     font-size: 14px;
@@ -52,8 +66,9 @@ body {
   .dropdown-menu {
     position: absolute;
     top: 40px;
+    width: 25vh;
     right: 0;
-    background-color: #222;
+    background-color: #000000;
     border: 1px solid #444;
     border-radius: 5px;
     padding: 10px;
@@ -61,6 +76,7 @@ body {
     flex-direction: column;
     gap: 10px;
   }
+  
   
   .dropdown-menu a {
     color: white;

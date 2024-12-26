@@ -6,10 +6,27 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Simulate fetching user ID from a database
-    setTimeout(() => {
-      setUserId("User123"); // Replace with your API/database call
-    }, 1000);
+    const fetchUser = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setUserId('Not logged in');
+        return;
+      }
+      try {
+        const response = await fetch('http://localhost:3000/auth/user', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        const userData = await response.json();
+        setUserId(userData.userId);  
+      } catch (error) {
+        console.error('Error fetching user:', error);
+        setUserId('Error loading user');
+      }
+    };
+
+    fetchUser();
   }, []);
 
   return (
@@ -22,7 +39,7 @@ export const Navbar = () => {
       {/* Right side */}
       <div className="navbar-right">
         {/* Feedback, Help, Docs */}
-        <span className="nav-link">Feedback</span>
+        <button className="nav-link">Feedback</button>
         <span className="nav-link">Help</span>
         <span className="nav-link">Docs</span>
 
